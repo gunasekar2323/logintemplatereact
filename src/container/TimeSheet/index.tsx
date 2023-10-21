@@ -6,6 +6,7 @@ import { getEmployees } from "../../service/employee.service";
 import { Person } from "../../interface/employe.interface";
 import Employees from "../Employees";
 import { deleteEmployee } from "../../service/employee.service";
+import Toaster from "../../utils/Toaster";
 const TimeSheet: React.FC = () => {
   const [employees, setEmployees] = useState<Person[]>([]);
   const [employee, setEmployee] = useState<Person | undefined>();
@@ -25,9 +26,10 @@ const TimeSheet: React.FC = () => {
         if(id){
             try{
                 await deleteEmployee(id)
+                Toaster({toast:"Deleted successfully",toastType:"success"})
             }
-            catch(err){
-
+            catch(err:any){
+                Toaster({toast:err.message,toastType:"error"})
             }
         }
   };
@@ -39,8 +41,8 @@ const TimeSheet: React.FC = () => {
     try {
       const { data } = await getEmployees();
       setEmployees(data);
-    } catch (err) {
-      console.log("error");
+    } catch (err:any) {
+        Toaster({toast:err.message,toastType:"error"})
     }
   };
   useEffect(() => {

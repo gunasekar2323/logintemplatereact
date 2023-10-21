@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import "./styles.css";
 
 const AuthPage: React.FC = () => {
   return (

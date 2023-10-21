@@ -1,22 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 import { useFormik } from "formik";
 import { validationSchema } from "./validation";
 import { Tregister } from "../../../interface/auth.interface";
 import { register } from "../../../service/auth.service";
+import Toaster from "../../../utils/Toaster";
 const RegisterPage: React.FC = () => {
-
+    const navigate = useNavigate()
     const submitReg= async (payload:Tregister)=>{
         delete payload.confirmPassword
         payload.email=payload.email.toLowerCase();
         try{
             const res = await register(payload)
-            console.log(res);
+            if(res) navigate("/login")
         }
-        catch(err){
-            console.log(err)
+        catch(err:any){
+          Toaster({toast:err.message,toastType:"error"})
         }
     }
     const formik = useFormik({

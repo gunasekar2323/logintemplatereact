@@ -26,7 +26,7 @@ const DashboardPage: React.FC = () => {
       <main className="flex-1 p-4">
         {/* Header */}
         <header className="bg-white shadow-md p-4">
-          <h1 className="text-2xl font-semibold">Welcome to Your SoftSuave</h1>
+          <h1 className="text-2xl font-semibold">Welcome to ERP</h1>
         </header>
 
         {/* Main Content */}
