@@ -1,6 +1,6 @@
 import React, { InputHTMLAttributes,useState } from 'react';
-import showPassword from "../../assets/showPassword.svg";
-import password from "../../assets/password.svg";
+// import { ReactComponent as ShowPassword } from "../../assets/showPassword.svg";
+// import password from "../../assets/password.svg";
 type InputProps = {
   label?: string;
   error?: string;
@@ -27,7 +27,7 @@ const Input: React.FC<InputProps> = (props) => {
         className="border px-4 py-2 w-full focus:outline-none focus:border-blue-500"
         placeholder={props.placeholder || 'Enter text...'}
       />
-      {type==="password" && <img src={show?showPassword:password} onClick={()=>setShow(!show)} alt='noimage' className="cursor-pointer absolute top-1/2 right-4 -translate-y-1/2 w-6 h-6"></img>}
+      {/* {type==="password" && <img src={show?showPassword:password} onClick={()=>setShow(!show)} alt='noimage' className="cursor-pointer absolute top-1/2 right-4 -translate-y-1/2 w-6 h-6"></img>} */}
       </div>
       {error && <p className="text-red-500 text-left">{error}</p>}
     </div>
