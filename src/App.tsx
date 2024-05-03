@@ -28,8 +28,8 @@ const App: React.FC = () => {
       element: <DashboardPage />,
       children: [
         {
-          path: "*",
-          element: <PrivateRoute />,
+          path: "",
+          children: [...PrivateRoute],
         },
       ],
     },

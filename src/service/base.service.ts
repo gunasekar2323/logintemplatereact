@@ -6,6 +6,7 @@ class BaseAxios {
   constructor() {
     this.axiosInstance = axios.create({
       baseURL: process.env.REACT_APP_API, // Replace with your API base URL
+      withCredentials:true
     });
 
     // Set up a request interceptor to attach the access token to requests
@@ -13,7 +14,7 @@ class BaseAxios {
       (config: any) => {
         const accessToken = this.getAccessToken();
         if (accessToken) {
-          config.headers["Authorization"] = `Bearer ${accessToken}`;
+          config.headers["Authorization"] = `${accessToken}`;
         }
         return config;
       },
@@ -42,6 +43,8 @@ class BaseAxios {
   }
 
   handle401Error(): void {
+    localStorage.clear();
+    window.location.replace('/');
     // Implement your logic to handle a 401 error
     // (e.g., redirect to login or refresh token)
   }
@@ -50,12 +53,12 @@ class BaseAxios {
     return this.axiosInstance.get<T>(url);
   }
 
-  post<T = any>(url: string, data?: any): Promise<AxiosResponse<T>> {
-    return this.axiosInstance.post<T>(url, data);
+  post<T = any>(url: string, data?: any,config?:any): Promise<AxiosResponse<T>> {
+    return this.axiosInstance.post<T>(url, data,config);
   }
 
-  put<T = any>(url: string, data?: any): Promise<AxiosResponse<T>> {
-    return this.axiosInstance.put<T>(url, data);
+  put<T = any>(url: string, data?: any,config?:any): Promise<AxiosResponse<T>> {
+    return this.axiosInstance.put<T>(url, data,config);
   }
 
   delete<T = any>(url: string): Promise<AxiosResponse<T>> {

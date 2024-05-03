@@ -15,7 +15,7 @@ const LoginPage: React.FC = () => {
     const res = await login(payload);
     if(res){
         console.log(res)
-        localStorage.setItem("accessToken",res.data.token)
+        localStorage.setItem("accessToken",res.token)
         navigate('/dashboard')
     }
     }
